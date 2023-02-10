@@ -164,7 +164,14 @@ export default function Movies() {
                     <Grid container gap={10} pt={8}>
                         {/* heading */}
                         <Grid item xs={12}>
-                            <Typography variant="h1" sx={{ color: theme.palette.text.white, textAlign: 'center' }}>
+                            <Typography
+                                variant="h1"
+                                sx={{
+                                    fontSize: { xs: '3rem', sm: '4rem', md: '4.5rem', lg: '5rem' },
+                                    color: theme.palette.text.white,
+                                    textAlign: 'center'
+                                }}
+                            >
                                 Rumah Film
                             </Typography>
                         </Grid>
@@ -172,7 +179,14 @@ export default function Movies() {
                         {/* heading action */}
                         <Grid item xs={12}>
                             <Stack flexDirection="row" alignItems="center" justifyContent="space-between">
-                                <Typography variant="h2">Daftar Film</Typography>
+                                <Typography
+                                    variant="h2"
+                                    sx={{
+                                        fontSize: { xs: '2rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' }
+                                    }}
+                                >
+                                    Daftar Film
+                                </Typography>
                                 <form>
                                     <Search>
                                         <SearchIconWrapper>
@@ -200,7 +214,8 @@ export default function Movies() {
                                             {movies.map((item, i) => (
                                                 <Grid
                                                     item
-                                                    xs={2.7}
+                                                    xs={5.5}
+                                                    sm={2.7}
                                                     mb={3}
                                                     key={i}
                                                     sx={{ cursor: 'pointer' }}
@@ -219,13 +234,32 @@ export default function Movies() {
                                                                 />
                                                             </Box>
                                                             <Stack mt={2} gap={1}>
-                                                                <Typography variant="h6" sx={{ color: '#0F1014' }}>
+                                                                <Typography
+                                                                    variant="h6"
+                                                                    sx={{
+                                                                        fontSize: { xs: '1rem', sm: '1.2rem', md: '1.5rem', lg: '1.5rem' },
+                                                                        color: '#0F1014'
+                                                                    }}
+                                                                >
                                                                     {item.original_title}
                                                                 </Typography>
-                                                                <Typography variant="h6 " sx={{ color: '#0F1014' }}>
+                                                                <Typography
+                                                                    variant="h6 "
+                                                                    sx={{
+                                                                        fontSize: { xs: '0.9rem', sm: '1rem', md: '1.3rem', lg: '1.5rem' },
+                                                                        color: '#0F1014'
+                                                                    }}
+                                                                >
                                                                     {item.release_date}
                                                                 </Typography>
-                                                                <Typography variant="h6" sx={{ color: '#0F1014', textAlign: 'right' }}>
+                                                                <Typography
+                                                                    variant="h6"
+                                                                    sx={{
+                                                                        fontSize: { xs: '0.9rem', sm: '1rem', md: '1.3rem', lg: '1.5rem' },
+                                                                        color: '#0F1014',
+                                                                        textAlign: 'right'
+                                                                    }}
+                                                                >
                                                                     {item.popularity}
                                                                 </Typography>
                                                             </Stack>
@@ -255,234 +289,233 @@ export default function Movies() {
                         <Box sx={style}>
                             {movie ? (
                                 <div className="poster">
-                                    <Box>
-                                        <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                            <Grid container>
-                                                <Grid item xs={12} textAlign="center">
-                                                    <Typography variant="h2" sx={{ color: '#000' }}>
-                                                        Detail Film
-                                                    </Typography>
-                                                </Grid>
+                                    <Box sx={{ width: '70vw', overflow: 'hidden' }}>
+                                        <Grid container>
+                                            <Grid item xs={12} textAlign="center">
+                                                <Typography variant="h2" sx={{ color: '#000' }}>
+                                                    Detail Film
+                                                </Typography>
                                             </Grid>
-                                            <Stack sx={{ width: '100%' }} mt={3}>
-                                                {playing ? (
-                                                    <Youtube
-                                                        videoId={trailer.key}
-                                                        className={'youtube amru'}
-                                                        containerClassName={'youtube-container amru'}
-                                                        opts={{
-                                                            width: '100%',
-                                                            height: '100%',
-                                                            playerVars: {
-                                                                autoplay: 1,
-                                                                controls: 0,
-                                                                cc_load_policy: 0,
-                                                                fs: 0,
-                                                                iv_load_policy: 0,
-                                                                modestbranding: 0,
-                                                                rel: 0,
-                                                                showinfo: 0
-                                                            }
+                                        </Grid>
+
+                                        <Stack sx={{ width: '100%' }} mt={3}>
+                                            {playing ? (
+                                                <Youtube
+                                                    videoId={trailer.key}
+                                                    className={'youtube amru'}
+                                                    containerClassName={'youtube-container amru'}
+                                                    opts={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        playerVars: {
+                                                            autoplay: 1,
+                                                            controls: 0,
+                                                            cc_load_policy: 0,
+                                                            fs: 0,
+                                                            iv_load_policy: 0,
+                                                            modestbranding: 0,
+                                                            rel: 0,
+                                                            showinfo: 0
+                                                        }
+                                                    }}
+                                                />
+                                            ) : (
+                                                <Stack sx={{ width: '100%' }} justifyContent="center" alignItems="center">
+                                                    <Box
+                                                        component="img"
+                                                        src={BACKDROP_PATH + movie.backdrop_path}
+                                                        sx={{
+                                                            width: '40%'
                                                         }}
                                                     />
-                                                ) : (
-                                                    <Stack sx={{ width: '100%' }} justifyContent="center" alignItems="center">
-                                                        <Box
-                                                            component="img"
-                                                            src={BACKDROP_PATH + movie.backdrop_path}
-                                                            sx={{
-                                                                width: '40%'
-                                                            }}
-                                                        />
-                                                    </Stack>
-                                                )}
-                                            </Stack>
-                                            <Stack mt={2} gap={2}>
-                                                {movie ? (
-                                                    <>
-                                                        {/* judul */}
-                                                        <Grid container>
-                                                            <Grid item xs={2}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    Judul
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={0.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    :
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={9.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    {movie.original_title}
-                                                                </Typography>
-                                                            </Grid>
+                                                </Stack>
+                                            )}
+                                        </Stack>
+                                        <Stack mt={2} gap={2}>
+                                            {movie ? (
+                                                <>
+                                                    {/* judul */}
+                                                    <Grid container>
+                                                        <Grid item xs={2} md={3} sm={2}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                Judul
+                                                            </Typography>
                                                         </Grid>
-                                                        {/* tanggal */}
-                                                        <Grid container>
-                                                            <Grid item xs={2}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    Tanggal Tayang
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={0.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    :
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={9.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    {movie.release_date}
-                                                                </Typography>
-                                                            </Grid>
+                                                        <Grid item xs={0.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                :
+                                                            </Typography>
                                                         </Grid>
-                                                        {/* pendapatan */}
-                                                        <Grid container>
-                                                            <Grid item xs={2}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    Pendapatan
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={0.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    :
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={9.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    {movie.revenue}
-                                                                </Typography>
-                                                            </Grid>
+                                                        <Grid item xs={9.5} md={8.5} sm={9.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                {movie.original_title}
+                                                            </Typography>
                                                         </Grid>
-                                                        {/* durasi */}
-                                                        <Grid container>
-                                                            <Grid item xs={2}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    Durasi
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={0.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    :
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={9.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    {movie.runtime} Menit
-                                                                </Typography>
-                                                            </Grid>
+                                                    </Grid>
+                                                    {/* tanggal */}
+                                                    <Grid container>
+                                                        <Grid item xs={2} md={3} sm={2}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                Tanggal Tayang
+                                                            </Typography>
                                                         </Grid>
-                                                        {/* sinopsis */}
-                                                        <Grid container>
-                                                            <Grid item xs={2}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    Sinopsis
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={0.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    :
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={9.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    {movie.overview}
-                                                                </Typography>
-                                                            </Grid>
+                                                        <Grid item xs={0.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                :
+                                                            </Typography>
                                                         </Grid>
-                                                        {/* trailer */}
-                                                        <Grid container>
-                                                            <Grid item xs={2}>
+                                                        <Grid item xs={9.5} md={8.5} sm={9.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                {movie.release_date}
+                                                            </Typography>
+                                                        </Grid>
+                                                    </Grid>
+                                                    {/* pendapatan */}
+                                                    <Grid container>
+                                                        <Grid item xs={2} md={3} sm={2}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                Pendapatan
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={0.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                :
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={9.5} md={8.5} sm={9.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                {movie.revenue}
+                                                            </Typography>
+                                                        </Grid>
+                                                    </Grid>
+                                                    {/* durasi */}
+                                                    <Grid container>
+                                                        <Grid item xs={2} md={3} sm={2}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                Durasi
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={0.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                :
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={9.5} md={8.5} sm={9.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                {movie.runtime} Menit
+                                                            </Typography>
+                                                        </Grid>
+                                                    </Grid>
+                                                    {/* sinopsis */}
+                                                    <Grid container>
+                                                        <Grid item xs={2} md={3} sm={2}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                Sinopsis
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={0.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                :
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={9.5} md={8.5} sm={9.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                {movie.overview}
+                                                            </Typography>
+                                                        </Grid>
+                                                    </Grid>
+                                                    {/* trailer */}
+                                                    <Grid container>
+                                                        <Grid item xs={2} md={3} sm={2}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                Trailer
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={0.5}>
+                                                            <Typography variant="h6" sx={{ color: '#000' }}>
+                                                                :
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={9.5} md={8.5} sm={9.5}>
+                                                            {trailer ? (
+                                                                <>
+                                                                    {playing ? (
+                                                                        <AnimateButton>
+                                                                            <Typography
+                                                                                variant="h6"
+                                                                                onClick={() => setPlaying(false)}
+                                                                                sx={{
+                                                                                    width: 'fit-content',
+                                                                                    py: 1,
+                                                                                    px: 2,
+                                                                                    borderRadius: '20px',
+                                                                                    border: '1px solid #000',
+                                                                                    cursor: 'pointer',
+                                                                                    backgroundColor: '#0F1014',
+                                                                                    color: '#fff'
+                                                                                }}
+                                                                            >
+                                                                                Berhenti Putar Trailer
+                                                                            </Typography>
+                                                                        </AnimateButton>
+                                                                    ) : (
+                                                                        <AnimateButton>
+                                                                            <Typography
+                                                                                variant="h6"
+                                                                                onClick={() => setPlaying(true)}
+                                                                                sx={{
+                                                                                    width: 'fit-content',
+                                                                                    py: 1,
+                                                                                    px: 2,
+                                                                                    borderRadius: '20px',
+                                                                                    border: '1px solid #000',
+                                                                                    cursor: 'pointer',
+                                                                                    backgroundColor: '#0F1014',
+                                                                                    color: '#fff'
+                                                                                }}
+                                                                            >
+                                                                                Putar Trailer
+                                                                            </Typography>
+                                                                        </AnimateButton>
+                                                                    )}
+                                                                </>
+                                                            ) : (
                                                                 <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    Trailer
+                                                                    Trailer Tidak Tersedia
                                                                 </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={0.5}>
-                                                                <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                    :
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid item xs={9.5}>
-                                                                {trailer ? (
-                                                                    <>
-                                                                        {playing ? (
-                                                                            <AnimateButton>
-                                                                                <Typography
-                                                                                    variant="h6"
-                                                                                    onClick={() => setPlaying(false)}
-                                                                                    sx={{
-                                                                                        width: 'fit-content',
-                                                                                        py: 1,
-                                                                                        px: 2,
-                                                                                        borderRadius: '20px',
-                                                                                        border: '1px solid #000',
-                                                                                        cursor: 'pointer',
-                                                                                        backgroundColor: '#0F1014',
-                                                                                        color: '#fff'
-                                                                                    }}
-                                                                                >
-                                                                                    Berhenti Putar Trailer
-                                                                                </Typography>
-                                                                            </AnimateButton>
-                                                                        ) : (
-                                                                            <AnimateButton>
-                                                                                <Typography
-                                                                                    variant="h6"
-                                                                                    onClick={() => setPlaying(true)}
-                                                                                    sx={{
-                                                                                        width: 'fit-content',
-                                                                                        py: 1,
-                                                                                        px: 2,
-                                                                                        borderRadius: '20px',
-                                                                                        border: '1px solid #000',
-                                                                                        cursor: 'pointer',
-                                                                                        backgroundColor: '#0F1014',
-                                                                                        color: '#fff'
-                                                                                    }}
-                                                                                >
-                                                                                    Putar Trailer
-                                                                                </Typography>
-                                                                            </AnimateButton>
-                                                                        )}
-                                                                    </>
-                                                                ) : (
-                                                                    <Typography variant="h6" sx={{ color: '#000' }}>
-                                                                        Trailer Tidak Tersedia
+                                                            )}
+                                                        </Grid>
+                                                    </Grid>
+                                                    {/* tutup modal */}
+                                                    <Grid container>
+                                                        <Grid item xs={12}>
+                                                            <Stack alignItems="flex-end" sx={{ width: '100%' }}>
+                                                                <AnimateButton>
+                                                                    <Typography
+                                                                        variant="h6"
+                                                                        onClick={handleCloseModal}
+                                                                        sx={{
+                                                                            width: 'fit-content',
+                                                                            py: 1,
+                                                                            px: 2,
+                                                                            borderRadius: '20px',
+                                                                            border: '1px solid #000',
+                                                                            cursor: 'pointer',
+                                                                            backgroundColor: '#f00',
+                                                                            color: '#fff'
+                                                                        }}
+                                                                    >
+                                                                        Tutup Detail
                                                                     </Typography>
-                                                                )}
-                                                            </Grid>
+                                                                </AnimateButton>
+                                                            </Stack>
                                                         </Grid>
-                                                        {/* tutup modal */}
-                                                        <Grid container>
-                                                            <Grid item xs={12}>
-                                                                <Stack alignItems="flex-end" sx={{ width: '100%' }}>
-                                                                    <AnimateButton>
-                                                                        <Typography
-                                                                            variant="h6"
-                                                                            onClick={handleCloseModal}
-                                                                            sx={{
-                                                                                width: 'fit-content',
-                                                                                py: 1,
-                                                                                px: 2,
-                                                                                borderRadius: '20px',
-                                                                                border: '1px solid #000',
-                                                                                cursor: 'pointer',
-                                                                                backgroundColor: '#f00',
-                                                                                color: '#fff'
-                                                                            }}
-                                                                        >
-                                                                            Tutup Detail
-                                                                        </Typography>
-                                                                    </AnimateButton>
-                                                                </Stack>
-                                                            </Grid>
-                                                        </Grid>
-                                                    </>
-                                                ) : (
-                                                    <CircularProgress />
-                                                )}
-                                            </Stack>
-                                        </Box>
+                                                    </Grid>
+                                                </>
+                                            ) : (
+                                                <CircularProgress />
+                                            )}
+                                        </Stack>
                                     </Box>
                                 </div>
                             ) : null}
