@@ -13,12 +13,6 @@ export default function App() {
     return (
         <Routes>
             <Route path="/" element={<MoviesPage />} />
-            {/* <Route path="/" element={<AdminLayout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/work-visit" element={<WorkVisitPage />} />
-        <Route path="/user-management" element={<UserManagementPage />} />
-        <Route path="/user-management-add-form" element={<UserManagementAddForm />} />
-      </Route> */}
         </Routes>
     );
 }

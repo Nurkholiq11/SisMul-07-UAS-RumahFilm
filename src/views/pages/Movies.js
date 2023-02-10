@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // third party
 import { useTheme } from '@mui/system';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Container, Grid, Box, Stack, InputBase, Card, Typography, Backdrop, Modal, Fade, CircularProgress } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -83,8 +83,6 @@ export default function Movies() {
     const [searchKey, setSearchKey] = useState('');
     const [movie, setMovie] = useState({ title: 'Loading Movies' });
 
-    console.log(trailer);
-
     useEffect(() => {
         fetchMovies();
     }, []);
@@ -149,9 +147,9 @@ export default function Movies() {
     };
     const handleCloseModal = () => {
         setOpenModal(false);
+        selectMovie();
+        fetchMovie();
     };
-
-    console.log(movie);
 
     return (
         <Box sx={{ backgroundColor: theme.palette.primary.main }}>
@@ -173,7 +171,7 @@ export default function Movies() {
 
                         {/* heading action */}
                         <Grid item xs={12}>
-                            <Stack flexDirection="row" justifyContent="space-between">
+                            <Stack flexDirection="row" alignItems="center" justifyContent="space-between">
                                 <Typography variant="h2">Daftar Film</Typography>
                                 <form>
                                     <Search>
@@ -247,7 +245,6 @@ export default function Movies() {
                 {/* modal */}
                 <Modal
                     open={openModal}
-                    onClose={handleCloseModal}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
@@ -260,7 +257,14 @@ export default function Movies() {
                                 <div className="poster">
                                     <Box>
                                         <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                            <Stack sx={{ width: '100%' }}>
+                                            <Grid container>
+                                                <Grid item xs={12} textAlign="center">
+                                                    <Typography variant="h2" sx={{ color: '#000' }}>
+                                                        Detail Film
+                                                    </Typography>
+                                                </Grid>
+                                            </Grid>
+                                            <Stack sx={{ width: '100%' }} mt={3}>
                                                 {playing ? (
                                                     <Youtube
                                                         videoId={trailer.key}
@@ -446,6 +450,31 @@ export default function Movies() {
                                                                         Trailer Tidak Tersedia
                                                                     </Typography>
                                                                 )}
+                                                            </Grid>
+                                                        </Grid>
+                                                        {/* tutup modal */}
+                                                        <Grid container>
+                                                            <Grid item xs={12}>
+                                                                <Stack alignItems="flex-end" sx={{ width: '100%' }}>
+                                                                    <AnimateButton>
+                                                                        <Typography
+                                                                            variant="h6"
+                                                                            onClick={handleCloseModal}
+                                                                            sx={{
+                                                                                width: 'fit-content',
+                                                                                py: 1,
+                                                                                px: 2,
+                                                                                borderRadius: '20px',
+                                                                                border: '1px solid #000',
+                                                                                cursor: 'pointer',
+                                                                                backgroundColor: '#f00',
+                                                                                color: '#fff'
+                                                                            }}
+                                                                        >
+                                                                            Tutup Detail
+                                                                        </Typography>
+                                                                    </AnimateButton>
+                                                                </Stack>
                                                             </Grid>
                                                         </Grid>
                                                     </>
